@@ -14,7 +14,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 
-private const val BASE_URL = "http://10.0.2.2:8080"
+private const val BASE_URL = "http://45.144.54.152:8081"
 
 class NobelApiService(private val client: HttpClient) {
 
