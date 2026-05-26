@@ -6,8 +6,6 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.io.File
-
 // ── Tables ────────────────────────────────────────────────────────────────────
 
 object Users : IntIdTable() {
@@ -68,10 +66,14 @@ class Laureate(id: EntityID<Int>) : IntEntity(id) {
 
 object DatabaseFactory {
     fun init() {
-        File("./data").mkdirs()
+        val url      = System.getenv("DB_URL")      ?: "jdbc:postgresql://localhost:5432/nobel_db"
+        val user     = System.getenv("DB_USER")     ?: "nobel_user"
+        val password = System.getenv("DB_PASSWORD") ?: "nobel_pass"
         Database.connect(
-            url    = "jdbc:h2:file:./data/nobeldb;DB_CLOSE_DELAY=-1",
-            driver = "org.h2.Driver"
+            url      = url,
+            driver   = "org.postgresql.Driver",
+            user     = user,
+            password = password
         )
         transaction {
             SchemaUtils.create(Users, Prizes, Laureates, UserFavorites)

@@ -35,7 +35,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-    implementation("com.h2database:h2:2.2.224")
+    implementation("org.postgresql:postgresql:42.7.3")
     implementation("ch.qos.logback:logback-classic:1.4.11")
 }
 
